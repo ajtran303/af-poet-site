@@ -15,7 +15,7 @@ RSpec.describe "Navbar Links Spec" do
         end
 
         within ".login" do
-          expect(page).to have_link("Login", href: "/login")
+          expect(page).to have_link("Log In", href: "/login")
         end
       end
     end
