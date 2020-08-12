@@ -19,12 +19,17 @@
     <%= link_to "About", "/about" %>
     <%= link_to "Events", "/events" %>
     <%= link_to "Media", "/media" %>
+    <%= tag.span "Logged in as Poet" if current_user %>
   </nav>
+
+  <% flash.each do |type, message| %>
+    <%= tag.p message %>
+  <% end %>
 
   <%= yield %>
 
   <div class="login">
-    <%= link_to "Login", "/login" %>
+    <%= current_user ? link_to("Log Out", "/logout", method: :delete) : link_to("Log In", "/login") %>
   </div>
 
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
