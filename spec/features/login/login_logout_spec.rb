@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'User Login and Log Out' do
-  describe 'A registered user can log in' do
-    before :each do
-      @user = User.create(email: 'poet@example.com', password: 'securepassword')
-    end
+  before :each do
+    @user = User.create(email: 'poet@example.com', password: 'securepassword')
+  end
 
+  describe 'A registered user can log in' do
     it 'with correct credentials' do
       visit login_path
 
@@ -28,10 +28,6 @@ RSpec.describe 'User Login and Log Out' do
   end
 
   describe 'Can not log in with bad credentials' do
-    before :each do
-      @user = User.create(email: 'poet@example.com', password: 'securepassword')
-    end
-
     it 'incorrect email' do
       visit login_path
 
@@ -56,11 +52,7 @@ RSpec.describe 'User Login and Log Out' do
   end
 
   describe 'A logged in user can log out' do
-    before :each do
-      @user = User.create(email: 'poet@example.com', password: 'securepassword')
-    end
-
-    it 'I visit the log out path' do
+    it 'By visiting the log out path' do
       visit login_path
 
       fill_in 'Email', with: @user.email
@@ -70,7 +62,7 @@ RSpec.describe 'User Login and Log Out' do
       click_link 'Log Out'
 
       expect(current_path).to eq(root_path)
-      expect(page).to_not have_content("Logged in as #{@user.name}")
+      expect(page).to_not have_content("Logged in as Poet")
       expect(page).to have_content('You have been logged out!')
     end
   end
