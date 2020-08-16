@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new
     if current_user
       flash[:notice] = "You are already logged in!"
-      redirect_to root_path
+      redirect_to admin_dashboard_index_path
     end
   end
 
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if authenticated?(user)
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to admin_dashboard_index_path
     else
       flash[:notice] = "Your email or password was incorrect!"
       render :new
