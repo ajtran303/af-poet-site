@@ -13,14 +13,27 @@
 
 <body class="container">
 
-  <nav class="navbar">
-    <%= link_to "Home", "/" %>
-    <%= link_to "Poems", "/poems" %>
-    <%= link_to "About", "/about" %>
-    <%= link_to "Events", "/events" %>
-    <%= link_to "Media", "/media" %>
-    <%= tag.span "Logged in as Poet" if current_user %>
-  </nav>
+  <% unless current_user %>
+    <nav class="navbar">
+      <%= link_to "Home", "/" %>
+      <%= link_to "Poems", "/poems" %>
+      <%= link_to "About", "/about" %>
+      <%= link_to "Events", "/events" %>
+      <%= link_to "Media", "/media" %>
+    </nav>
+  <% end %>
+
+  <% if current_user %>
+    <nav class="navbar">
+      <%= link_to "Home", "/" %>
+      <%= link_to "Poems", "/admin/poems" %>
+      <%= link_to "About", "/admin/about" %>
+      <%= link_to "Events", "/admin/events" %>
+      <%= link_to "Media", "/admin/media" %>
+      <%= link_to "Dashboard", "/admin/dashboard" %>
+      <%= tag.span "Logged in as Poet"%>
+    </nav>
+  <% end %>
 
   <% flash.each do |type, message| %>
     <%= tag.p message %>
