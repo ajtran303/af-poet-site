@@ -14,6 +14,11 @@ RSpec.describe "Admin Dashboard Index Page Spec" do
       expect(current_path).to eq(admin_dashboard_index_path)
     end
 
+    it "I see links to edit the site" do
+      expect(page).to have_link("Edit About Page", href: "/admin/about/1/edit")
+
+    end
+
     it "The navbar links to resources under the admin namespace" do
       within ".navbar" do
         expect(page).to have_link("Home", href: "/")
