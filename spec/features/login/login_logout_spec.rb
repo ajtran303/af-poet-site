@@ -49,6 +49,15 @@ RSpec.describe 'User Login and Log Out' do
       expect(page).to have_content('Your email or password was incorrect!')
       expect(page).to have_button('Log In')
     end
+
+    it "no credentials" do
+      visit login_path
+
+      click_button 'Log In'
+
+      expect(page).to have_content('Your email or password was incorrect!')
+      expect(page).to have_button('Log In')
+    end
   end
 
   describe 'A logged in user can log out' do
